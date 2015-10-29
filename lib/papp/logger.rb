@@ -1,22 +1,21 @@
 module PApp
+  # Defines a simple logger
   class Logger
     LEVELS = {
       1 => :error,
       2 => :warn,
-      3 => :debug,
+      3 => :debug
     }
-
     attr_accessor :verbosity, :output
 
     LEVELS.each do |v, level|
       define_method(level) do |*args|
-        return if v > verbosity
-        log!(v, *args)
+        log!(v, *args) if v <= verbosity
       end
     end
 
     def initialize(output, verbosity)
-      self.verbosity = if verbosity.is_a?(Numeric) 
+      self.verbosity = if verbosity.is_a?(Numeric)
                          verbosity
                        else
                          LEVELS.invert[verbosity]

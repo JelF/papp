@@ -17,9 +17,8 @@ describe PApp::Application do
   end
 
   it 'parses params' do
-    Dummy.run! %w[-fb foo foo --baz --xxx something -- -ruby-is-cool=yes]
-    expect(Dummy.result).to(eq(['foo', '-ruby-is-cool=yes', foo: 1,
-                                bar: 'foo', baz: 1, xxx: 'something']))
-      
+    Dummy.build!(%w(-fb foo foo --baz --xxx something -- -ruby-is-cool=yes)).run
+    expect(Dummy.result).to(eq(['foo', '-ruby-is-cool=yes',
+                                foo: 1, bar: 'foo', baz: 1, xxx: 'something']))
   end
 end

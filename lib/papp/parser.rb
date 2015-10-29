@@ -1,4 +1,5 @@
 module PApp
+  # Parses generic param lists and extracts options
   class Parser
     def self.alias_key(key, value)
       aliases[convert_key(key)] = convert_key(value)
@@ -9,7 +10,7 @@ module PApp
     end
 
     def self.convert_key(key)
-      key.to_s.gsub('-', '_').to_sym
+      key.to_s.tr('-', '_').to_sym
     end
 
     def initialize(args)
@@ -19,9 +20,7 @@ module PApp
     end
 
     def extract_options!
-      while args.any?
-        extract_option!
-      end
+      extract_option! while args.any?
 
       options << keys if keys.any?
       options
@@ -31,6 +30,9 @@ module PApp
 
     attr_accessor :args, :options, :keys
 
+    # FIXME[WANTHELP]: ABC size should be reduced without readablity loss
+    # FIXME[WANTHELP]: method size should be reduced without readablity loss
+    # run bin/rubocop to see it's values
     def extract_option!
       case args[0]
       when /\A-[^-]./
