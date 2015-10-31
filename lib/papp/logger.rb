@@ -4,8 +4,10 @@ module PApp
     LEVELS = {
       1 => :error,
       2 => :warn,
-      3 => :debug
+      3 => :info,
+      4 => :debug,
     }
+    
     attr_accessor :verbosity, :output
 
     LEVELS.each do |v, level|
