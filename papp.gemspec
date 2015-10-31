@@ -2,7 +2,7 @@ $LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
 require 'papp/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'PApp'
+  spec.name = 'papp'
   spec.version = PApp::VERSION
   spec.authors = %w(jelf)
   spec.email = %w(begdory4+comma@gmail.com)
